@@ -1,0 +1,47 @@
+import streamlit as st
+import requests
+from streamlit_lottie import st_lottie
+
+#--------WEBPAGE LAYOUT--------#
+
+st.set_page_config(page_title="My Webpage" , page_icon=":tada:" , layout="wide")
+
+#--------ANIMATION SECTION---------#
+def load_lottieurl(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+lottie_coding = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_3rwasyjy.json")
+
+
+
+#-------Header section------
+with st.container():
+    st.subheader("Hi , I am Mani :wave:")
+    st.title("A Beginner Programmer From India")
+    st.write("I am Passionate About Learning About Python and other Programming Languages")
+
+
+#--------ABOUT ME---------#
+
+with st.container():
+    st.write("----")
+    left_column, right_column = st.columns(2)
+    with left_column:
+        st.header("What i do")
+        st.write("##")
+        st.write(
+            """
+            So i created this website to say about my self:
+             - I am studying in India ongole public school 
+             - I am in 10 grade now 
+             - So I am interested in coding 
+             - Specifically  Python and C
+             """
+        )
+
+with right_column:
+    st_lottie(lottie_coding, height=300, key="coding")
+
